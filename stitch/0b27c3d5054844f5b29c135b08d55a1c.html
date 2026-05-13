@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>TETRA SUPERVISOR - Main Menu</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700;800&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "primary": "#ffffff",
+                      "background": "#131313",
+                      "inverse-primary": "#5c5f61",
+                      "secondary-fixed-dim": "#b9c7e0",
+                      "on-secondary-fixed-variant": "#3a485c",
+                      "secondary-container": "#3c4a5e",
+                      "surface-dim": "#131313",
+                      "primary-fixed-dim": "#c4c7c9",
+                      "on-surface-variant": "#c4c7c9",
+                      "surface-tint": "#c4c7c9",
+                      "surface-container-highest": "#353535",
+                      "surface-container": "#201f1f",
+                      "tertiary": "#ffffff",
+                      "surface-variant": "#353535",
+                      "error-container": "#93000a",
+                      "surface": "#131313",
+                      "on-primary": "#2d3133",
+                      "inverse-on-surface": "#313030",
+                      "on-secondary-container": "#abb9d2",
+                      "on-error": "#690005",
+                      "on-tertiary-container": "#67645d",
+                      "surface-container-low": "#1c1b1b",
+                      "tertiary-fixed-dim": "#cbc6bd",
+                      "outline-variant": "#444749",
+                      "on-primary-fixed-variant": "#444749",
+                      "on-tertiary-fixed-variant": "#494640",
+                      "on-tertiary-fixed": "#1d1b16",
+                      "on-background": "#e5e2e1",
+                      "surface-container-high": "#2a2a2a",
+                      "surface-container-lowest": "#0e0e0e",
+                      "on-primary-fixed": "#191c1e",
+                      "primary-container": "#e0e3e5",
+                      "secondary": "#b9c7e0",
+                      "on-surface": "#e5e2e1",
+                      "on-secondary": "#233144",
+                      "on-secondary-fixed": "#0d1c2f",
+                      "primary-fixed": "#e0e3e5",
+                      "error": "#ffb4ab",
+                      "on-primary-container": "#626567",
+                      "on-tertiary": "#32302a",
+                      "secondary-fixed": "#d5e3fd",
+                      "tertiary-container": "#e7e2d9",
+                      "surface-bright": "#3a3939",
+                      "tertiary-fixed": "#e7e2d9",
+                      "on-error-container": "#ffdad6",
+                      "outline": "#8e9193",
+                      "inverse-surface": "#e5e2e1"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "md": "24px",
+                      "touch-target": "44px",
+                      "xs": "8px",
+                      "xl": "64px",
+                      "base": "4px",
+                      "board-gutter": "2px",
+                      "sm": "16px",
+                      "lg": "40px"
+              },
+              "fontFamily": {
+                      "body-md": [
+                              "Hanken Grotesk"
+                      ],
+                      "headline-lg": [
+                              "Hanken Grotesk"
+                      ],
+                      "label-sm": [
+                              "Hanken Grotesk"
+                      ],
+                      "headline-md": [
+                              "Hanken Grotesk"
+                      ],
+                      "display-score": [
+                              "Hanken Grotesk"
+                      ],
+                      "label-mono": [
+                              "JetBrains Mono"
+                      ],
+                      "body-lg": [
+                              "Hanken Grotesk"
+                      ]
+              },
+              "fontSize": {
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "1.5",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "label-sm": [
+                              "12px",
+                              {
+                                      "lineHeight": "1.4",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "1.3",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "display-score": [
+                              "48px",
+                              {
+                                      "lineHeight": "1.1",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "800"
+                              }
+                      ],
+                      "label-mono": [
+                              "14px",
+                              {
+                                      "lineHeight": "1.4",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "1.5",
+                                      "fontWeight": "400"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+    </script>
+<style>
+        .ghost-grid {
+            background-image: 
+                linear-gradient(to right, #334155 1px, transparent 1px),
+                linear-gradient(to bottom, #334155 1px, transparent 1px);
+            background-size: calc(100% / 10) calc(100% / 20);
+        }
+        .neon-glow-primary {
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+        }
+        .focus-ring:focus-within {
+            outline: 2px solid #F8FAFC;
+            outline-offset: 0;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md min-h-screen flex flex-col items-center justify-center relative overflow-hidden">
+<!-- Background Tetris Stack Representation -->
+<div class="absolute inset-0 z-0 opacity-20 pointer-events-none flex justify-center items-end pb-xl">
+<div class="w-full max-w-[400px] h-3/4 ghost-grid border-2 border-surface-variant relative flex flex-col-reverse p-board-gutter gap-board-gutter">
+<!-- Simulated Blocks -->
+<div class="h-[calc(100%/20)] w-[calc(100%/10*4)] bg-[#0ea5e9] ml-[calc(100%/10*3)] rounded-sm"></div>
+<div class="h-[calc(100%/20*2)] w-[calc(100%/10*2)] bg-[#eab308] ml-[calc(100%/10*2)] rounded-sm"></div>
+<div class="h-[calc(100%/20)] w-[calc(100%/10*3)] bg-[#a855f7] ml-[calc(100%/10*6)] rounded-sm"></div>
+<div class="h-[calc(100%/20*2)] w-[calc(100%/10*2)] bg-[#ef4444] ml-[calc(100%/10)] rounded-sm"></div>
+</div>
+</div>
+<!-- Main Content Container -->
+<main class="relative z-10 w-full max-w-md px-md flex flex-col items-center gap-xl">
+<!-- Header / Brand -->
+<div class="text-center">
+<h1 class="font-display-score text-display-score text-primary tracking-tighter neon-glow-primary inline-block">TETRA</h1>
+<h2 class="font-headline-md text-headline-md text-primary-fixed-dim tracking-widest mt-base">SUPERVISOR</h2>
+</div>
+<!-- Action Menu -->
+<nav class="w-full flex flex-col gap-md">
+<!-- Primary Actions Group -->
+<div class="flex flex-col gap-sm">
+<button class="focus-ring bg-primary text-on-primary font-headline-md text-headline-md h-[64px] rounded flex items-center justify-center w-full transition-transform hover:scale-[1.02] active:scale-[0.98]">
+                    START GAME
+                </button>
+<div class="flex gap-sm">
+<button class="flex-1 border-2 border-surface-variant bg-surface-container-lowest text-on-surface-variant font-label-mono text-label-mono h-touch-target rounded flex items-center justify-center opacity-50 cursor-not-allowed" disabled="">
+                        RESUME
+                    </button>
+<button class="focus-ring flex-1 border-2 border-surface-variant bg-transparent text-primary font-label-mono text-label-mono h-touch-target rounded flex items-center justify-center hover:bg-surface-variant transition-colors">
+                        RESTART
+                    </button>
+</div>
+</div>
+<div class="w-full border-t border-surface-variant my-xs"></div>
+<!-- Secondary Actions Group -->
+<div class="flex flex-col gap-base w-full max-w-[240px] mx-auto">
+<button class="focus-ring group flex items-center justify-between p-xs text-on-surface-variant hover:text-primary transition-colors border-b border-surface-variant">
+<span class="font-label-mono text-label-mono">LEADERBOARD</span>
+<span class="material-symbols-outlined text-[18px] group-hover:translate-x-1 transition-transform">chevron_right</span>
+</button>
+<button class="focus-ring group flex items-center justify-between p-xs text-on-surface-variant hover:text-primary transition-colors border-b border-surface-variant">
+<span class="font-label-mono text-label-mono">SETTINGS</span>
+<span class="material-symbols-outlined text-[18px] group-hover:translate-x-1 transition-transform">chevron_right</span>
+</button>
+<button class="focus-ring group flex items-center justify-between p-xs text-on-surface-variant hover:text-primary transition-colors border-b border-surface-variant">
+<span class="font-label-mono text-label-mono">HOW TO PLAY</span>
+<span class="material-symbols-outlined text-[18px] group-hover:translate-x-1 transition-transform">chevron_right</span>
+</button>
+</div>
+</nav>
+<!-- System Status Footer -->
+<div class="mt-lg text-center">
+<p class="font-label-sm text-label-sm text-on-surface-variant">SYSTEM v2.4.1 // READY</p>
+</div>
+</main>
+</body></html>

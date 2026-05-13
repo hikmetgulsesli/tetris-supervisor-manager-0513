@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>TETRA HUD - Controls Help</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700;800&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary": "#ffffff",
+                        "background": "#131313",
+                        "inverse-primary": "#5c5f61",
+                        "secondary-fixed-dim": "#b9c7e0",
+                        "on-secondary-fixed-variant": "#3a485c",
+                        "secondary-container": "#3c4a5e",
+                        "surface-dim": "#131313",
+                        "primary-fixed-dim": "#c4c7c9",
+                        "on-surface-variant": "#c4c7c9",
+                        "surface-tint": "#c4c7c9",
+                        "surface-container-highest": "#353535",
+                        "surface-container": "#201f1f",
+                        "tertiary": "#ffffff",
+                        "surface-variant": "#353535",
+                        "error-container": "#93000a",
+                        "surface": "#131313",
+                        "on-primary": "#2d3133",
+                        "inverse-on-surface": "#313030",
+                        "on-secondary-container": "#abb9d2",
+                        "on-error": "#690005",
+                        "on-tertiary-container": "#67645d",
+                        "surface-container-low": "#1c1b1b",
+                        "tertiary-fixed-dim": "#cbc6bd",
+                        "outline-variant": "#444749",
+                        "on-primary-fixed-variant": "#444749",
+                        "on-tertiary-fixed-variant": "#494640",
+                        "on-tertiary-fixed": "#1d1b16",
+                        "on-background": "#e5e2e1",
+                        "surface-container-high": "#2a2a2a",
+                        "surface-container-lowest": "#0e0e0e",
+                        "on-primary-fixed": "#191c1e",
+                        "primary-container": "#e0e3e5",
+                        "secondary": "#b9c7e0",
+                        "on-surface": "#e5e2e1",
+                        "on-secondary": "#233144",
+                        "on-secondary-fixed": "#0d1c2f",
+                        "primary-fixed": "#e0e3e5",
+                        "error": "#ffb4ab",
+                        "on-primary-container": "#626567",
+                        "on-tertiary": "#32302a",
+                        "secondary-fixed": "#d5e3fd",
+                        "tertiary-container": "#e7e2d9",
+                        "surface-bright": "#3a3939",
+                        "tertiary-fixed": "#e7e2d9",
+                        "on-error-container": "#ffdad6",
+                        "outline": "#8e9193",
+                        "inverse-surface": "#e5e2e1"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "md": "24px",
+                        "touch-target": "44px",
+                        "xs": "8px",
+                        "xl": "64px",
+                        "base": "4px",
+                        "board-gutter": "2px",
+                        "sm": "16px",
+                        "lg": "40px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Hanken Grotesk"],
+                        "headline-lg": ["Hanken Grotesk"],
+                        "label-sm": ["Hanken Grotesk"],
+                        "headline-md": ["Hanken Grotesk"],
+                        "display-score": ["Hanken Grotesk"],
+                        "label-mono": ["JetBrains Mono"],
+                        "body-lg": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "label-sm": ["12px", { "lineHeight": "1.4", "fontWeight": "600" }],
+                        "headline-md": ["24px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "display-score": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "label-mono": ["14px", { "lineHeight": "1.4", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "body-lg": ["18px", { "lineHeight": "1.5", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .cyber-grid {
+            background-image: 
+                linear-gradient(to right, rgba(51, 65, 85, 0.2) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(51, 65, 85, 0.2) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+        .neon-cyan-glow { text-shadow: 0 0 15px #00ffff; border-color: #00ffff; box-shadow: 0 0 15px rgba(0, 255, 255, 0.3); }
+        .neon-purple-glow { text-shadow: 0 0 15px #b026ff; border-color: #b026ff; box-shadow: 0 0 15px rgba(176, 38, 255, 0.3); }
+        .neon-yellow-glow { text-shadow: 0 0 15px #ffff00; border-color: #ffff00; box-shadow: 0 0 15px rgba(255, 255, 0, 0.3); }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex flex-col items-center justify-start p-md cyber-grid">
+<!-- Header / Navigation Shell Replacement for "Help" Intent -->
+<header class="w-full max-w-4xl flex items-center justify-between py-md mb-lg border-b border-surface-variant">
+<div class="flex items-center gap-sm text-primary">
+<span class="material-symbols-outlined text-headline-lg font-headline-lg">help</span>
+<h1 class="text-headline-lg font-headline-lg tracking-tighter uppercase">GUIDE</h1>
+</div>
+<button class="h-touch-target px-md bg-transparent border border-outline text-primary font-label-mono text-label-mono hover:bg-surface-variant transition-colors flex items-center gap-xs">
+<span class="material-symbols-outlined">arrow_back</span>
+            BACK TO MENU
+        </button>
+</header>
+<main class="w-full max-w-4xl grid grid-cols-1 lg:grid-cols-2 gap-xl">
+<!-- Controls Column -->
+<div class="flex flex-col gap-lg">
+<!-- Keyboard Controls -->
+<section class="bg-surface border border-surface-variant p-md relative overflow-hidden group">
+<div class="absolute top-0 left-0 w-1 h-full bg-primary group-hover:neon-cyan-glow transition-all"></div>
+<h2 class="text-headline-md font-headline-md text-primary mb-sm uppercase">Keyboard</h2>
+<div class="grid grid-cols-3 gap-xs mb-md max-w-xs mx-auto text-center">
+<div></div>
+<div class="bg-surface-container border-2 border-surface-variant p-xs rounded h-touch-target flex items-center justify-center text-primary font-label-mono text-label-mono">
+<span class="material-symbols-outlined">arrow_upward</span>
+</div>
+<div></div>
+<div class="bg-surface-container border-2 border-surface-variant p-xs rounded h-touch-target flex items-center justify-center text-primary font-label-mono text-label-mono">
+<span class="material-symbols-outlined">arrow_back</span>
+</div>
+<div class="bg-surface-container border-2 border-surface-variant p-xs rounded h-touch-target flex items-center justify-center text-primary font-label-mono text-label-mono">
+<span class="material-symbols-outlined">arrow_downward</span>
+</div>
+<div class="bg-surface-container border-2 border-surface-variant p-xs rounded h-touch-target flex items-center justify-center text-primary font-label-mono text-label-mono">
+<span class="material-symbols-outlined">arrow_forward</span>
+</div>
+</div>
+<div class="space-y-xs font-label-mono text-label-mono text-on-surface-variant">
+<div class="flex justify-between border-b border-surface-variant pb-base"><span class="text-primary">↑ UP</span><span>ROTATE CLOCKWISE</span></div>
+<div class="flex justify-between border-b border-surface-variant pb-base"><span class="text-primary">↓ DOWN</span><span>SOFT DROP</span></div>
+<div class="flex justify-between border-b border-surface-variant pb-base"><span class="text-primary">← → LR</span><span>MOVE LEFT/RIGHT</span></div>
+<div class="flex justify-between border-b border-surface-variant pb-base"><span class="text-primary">[SPACE]</span><span>HARD DROP</span></div>
+<div class="flex justify-between"><span class="text-primary">[ C ]</span><span>HOLD PIECE</span></div>
+</div>
+</section>
+<!-- Touch Controls -->
+<section class="bg-surface border border-surface-variant p-md relative overflow-hidden group">
+<div class="absolute top-0 left-0 w-1 h-full bg-secondary group-hover:neon-purple-glow transition-all"></div>
+<h2 class="text-headline-md font-headline-md text-primary mb-sm uppercase">Touch</h2>
+<div class="flex justify-around items-center bg-surface-container p-sm border border-surface-variant mb-md rounded">
+<div class="flex flex-col items-center">
+<div class="w-touch-target h-touch-target border border-outline rounded-full flex items-center justify-center mb-xs text-primary">
+<span class="material-symbols-outlined">swipe_left</span>
+</div>
+<span class="font-label-mono text-label-mono text-on-surface-variant">SWIPE</span>
+</div>
+<div class="flex flex-col items-center">
+<div class="w-touch-target h-touch-target border border-outline rounded-full flex items-center justify-center mb-xs text-primary">
+<span class="material-symbols-outlined">touch_app</span>
+</div>
+<span class="font-label-mono text-label-mono text-on-surface-variant">TAP</span>
+</div>
+</div>
+<div class="space-y-xs font-label-mono text-label-mono text-on-surface-variant">
+<div class="flex justify-between border-b border-surface-variant pb-base"><span class="text-secondary">SWIPE LR</span><span>MOVE PIECE</span></div>
+<div class="flex justify-between border-b border-surface-variant pb-base"><span class="text-secondary">SWIPE DOWN</span><span>HARD DROP</span></div>
+<div class="flex justify-between border-b border-surface-variant pb-base"><span class="text-secondary">TAP RIGHT</span><span>ROTATE CW</span></div>
+<div class="flex justify-between"><span class="text-secondary">TAP LEFT</span><span>HOLD</span></div>
+</div>
+</section>
+</div>
+<!-- Rules & Scoring Column -->
+<div class="flex flex-col gap-lg">
+<section class="bg-surface border border-surface-variant p-md relative overflow-hidden group">
+<div class="absolute top-0 left-0 w-1 h-full bg-tertiary group-hover:neon-yellow-glow transition-all"></div>
+<h2 class="text-headline-md font-headline-md text-primary mb-sm uppercase">Rules &amp; Scoring</h2>
+<div class="space-y-md">
+<!-- T-Spin -->
+<div>
+<h3 class="font-label-sm text-label-sm text-primary uppercase tracking-widest mb-xs border-b border-surface-variant pb-base">T-Spin</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Rotate a T-piece into a tight slot to score massively. T-Spins clear lines and multiply standard scoring.</p>
+<div class="flex gap-xs mt-xs">
+<div class="w-xs h-xs bg-[#b026ff] shadow-[0_0_5px_#b026ff]"></div>
+<div class="w-xs h-xs bg-[#b026ff] shadow-[0_0_5px_#b026ff]"></div>
+<div class="w-xs h-xs bg-[#b026ff] shadow-[0_0_5px_#b026ff]"></div>
+</div>
+</div>
+<!-- Combos -->
+<div>
+<h3 class="font-label-sm text-label-sm text-primary uppercase tracking-widest mb-xs border-b border-surface-variant pb-base">Combos &amp; B2B</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Clear lines in consecutive drops to build a Combo multiplier. Back-to-Back (B2B) Tetris or T-Spin line clears maintain a high-value chain.</p>
+</div>
+<!-- Speed/Level -->
+<div>
+<h3 class="font-label-sm text-label-sm text-primary uppercase tracking-widest mb-xs border-b border-surface-variant pb-base">Gravity Levels</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Gravity (drop speed) increases every 10 lines cleared. At high levels, pieces "lock" almost instantly upon touching surfaces (Lock Delay).</p>
+</div>
+</div>
+</section>
+<!-- Visual Telemetry Decorative Element -->
+<div class="border border-surface-variant bg-surface-container-low h-32 flex flex-col justify-center items-center opacity-50 relative overflow-hidden">
+<div class="absolute inset-0 cyber-grid opacity-20"></div>
+<div class="font-label-mono text-label-mono text-primary animate-pulse">SYS.READY // UPLINK SECURE</div>
+<div class="flex gap-1 mt-2">
+<div class="w-2 h-8 bg-primary"></div>
+<div class="w-2 h-4 bg-outline"></div>
+<div class="w-2 h-6 bg-primary"></div>
+<div class="w-2 h-3 bg-outline"></div>
+<div class="w-2 h-8 bg-primary"></div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

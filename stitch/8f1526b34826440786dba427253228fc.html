@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>TETRA HUD</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700;800&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary": "#ffffff",
+                        "background": "#131313",
+                        "inverse-primary": "#5c5f61",
+                        "secondary-fixed-dim": "#b9c7e0",
+                        "on-secondary-fixed-variant": "#3a485c",
+                        "secondary-container": "#3c4a5e",
+                        "surface-dim": "#131313",
+                        "primary-fixed-dim": "#c4c7c9",
+                        "on-surface-variant": "#c4c7c9",
+                        "surface-tint": "#c4c7c9",
+                        "surface-container-highest": "#353535",
+                        "surface-container": "#201f1f",
+                        "tertiary": "#ffffff",
+                        "surface-variant": "#353535",
+                        "error-container": "#93000a",
+                        "surface": "#131313",
+                        "on-primary": "#2d3133",
+                        "inverse-on-surface": "#313030",
+                        "on-secondary-container": "#abb9d2",
+                        "on-error": "#690005",
+                        "on-tertiary-container": "#67645d",
+                        "surface-container-low": "#1c1b1b",
+                        "tertiary-fixed-dim": "#cbc6bd",
+                        "outline-variant": "#444749",
+                        "on-primary-fixed-variant": "#444749",
+                        "on-tertiary-fixed-variant": "#494640",
+                        "on-tertiary-fixed": "#1d1b16",
+                        "on-background": "#e5e2e1",
+                        "surface-container-high": "#2a2a2a",
+                        "surface-container-lowest": "#0e0e0e",
+                        "on-primary-fixed": "#191c1e",
+                        "primary-container": "#e0e3e5",
+                        "secondary": "#b9c7e0",
+                        "on-surface": "#e5e2e1",
+                        "on-secondary": "#233144",
+                        "on-secondary-fixed": "#0d1c2f",
+                        "primary-fixed": "#e0e3e5",
+                        "error": "#ffb4ab",
+                        "on-primary-container": "#626567",
+                        "on-tertiary": "#32302a",
+                        "secondary-fixed": "#d5e3fd",
+                        "tertiary-container": "#e7e2d9",
+                        "surface-bright": "#3a3939",
+                        "tertiary-fixed": "#e7e2d9",
+                        "on-error-container": "#ffdad6",
+                        "outline": "#8e9193",
+                        "inverse-surface": "#e5e2e1"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "md": "24px",
+                        "touch-target": "44px",
+                        "xs": "8px",
+                        "xl": "64px",
+                        "base": "4px",
+                        "board-gutter": "2px",
+                        "sm": "16px",
+                        "lg": "40px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Hanken Grotesk"],
+                        "headline-lg": ["Hanken Grotesk"],
+                        "label-sm": ["Hanken Grotesk"],
+                        "headline-md": ["Hanken Grotesk"],
+                        "display-score": ["Hanken Grotesk"],
+                        "label-mono": ["JetBrains Mono"],
+                        "body-lg": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "label-sm": ["12px", { "lineHeight": "1.4", "fontWeight": "600" }],
+                        "headline-md": ["24px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "display-score": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "label-mono": ["14px", { "lineHeight": "1.4", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "body-lg": ["18px", { "lineHeight": "1.5", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface h-screen flex flex-col overflow-hidden font-body-md text-body-md select-none">
+<!-- TopAppBar -->
+<header class="flex justify-between items-center px-sm h-touch-target w-full z-50 bg-background border-b border-surface-variant docked full-width top-0 shrink-0">
+<div class="text-headline-md font-headline-md font-black tracking-tighter text-primary">TETRA HUD</div>
+<nav class="hidden md:flex gap-lg items-center h-full">
+<a class="h-full flex items-center text-primary font-bold border-b-2 border-primary pb-1 font-label-mono text-label-mono hover:text-primary hover:bg-surface-container transition-colors px-2" href="#">PLAY</a>
+<a class="h-full flex items-center text-on-surface-variant font-medium font-label-mono text-label-mono hover:text-primary hover:bg-surface-container transition-colors px-2" href="#">STATS</a>
+<a class="h-full flex items-center text-on-surface-variant font-medium font-label-mono text-label-mono hover:text-primary hover:bg-surface-container transition-colors px-2" href="#">GUIDE</a>
+<a class="h-full flex items-center text-on-surface-variant font-medium font-label-mono text-label-mono hover:text-primary hover:bg-surface-container transition-colors px-2" href="#">SETTINGS</a>
+</nav>
+<div class="flex gap-xs">
+<button class="text-primary hover:bg-surface-container transition-colors p-2 rounded flex items-center justify-center h-touch-target w-touch-target active:scale-95 duration-75">
+<span class="material-symbols-outlined">pause</span>
+</button>
+<button class="text-primary hover:bg-surface-container transition-colors p-2 rounded flex items-center justify-center h-touch-target w-touch-target active:scale-95 duration-75">
+<span class="material-symbols-outlined">volume_up</span>
+</button>
+</div>
+</header>
+<!-- Main Game Canvas -->
+<main class="flex-grow relative flex items-center justify-center w-full px-sm py-lg overflow-y-auto lg:overflow-hidden">
+<!-- Reactive Background Pulse -->
+<div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-colors-surface-container-high)_0%,_transparent_60%)] opacity-30 z-0 pointer-events-none"></div>
+<!-- HUD Layout Grid -->
+<div class="flex flex-col lg:flex-row items-center lg:items-start justify-center gap-md lg:gap-xl z-10 w-full max-w-5xl">
+<!-- Left HUD: HOLD -->
+<aside class="flex flex-col gap-xs order-2 lg:order-1 w-[96px] shrink-0">
+<h2 class="font-label-mono text-label-mono text-on-surface-variant text-center lg:text-left tracking-widest">HOLD</h2>
+<div class="border-[2px] border-outline-variant bg-surface-container-lowest p-board-gutter relative w-[96px] h-[96px] flex items-center justify-center">
+<div class="grid grid-cols-4 grid-rows-4 gap-board-gutter w-full h-full p-[2px]">
+<!-- Simulate piece in hold -->
+<div class="col-start-2 row-start-2 col-span-2 row-span-2 bg-secondary/80 border border-secondary"></div>
+<div class="col-start-1 row-start-2 col-span-1 row-span-1 bg-secondary/80 border border-secondary"></div>
+<div class="col-start-4 row-start-2 col-span-1 row-span-1 bg-secondary/80 border border-secondary"></div>
+</div>
+</div>
+</aside>
+<!-- Center: GAME BOARD -->
+<section class="order-1 lg:order-2 shrink-0">
+<div class="border-[2px] border-surface-variant bg-surface-container-lowest p-board-gutter relative shadow-[0_0_40px_rgba(0,0,0,0.5)]">
+<!-- 10x20 Grid -->
+<div class="grid grid-cols-10 grid-rows-20 gap-board-gutter w-[220px] h-[440px] md:w-[280px] md:h-[560px] relative bg-surface-dim">
+<!-- Ghost Grid Lines overlay -->
+<div class="absolute inset-0 grid grid-cols-10 grid-rows-20 gap-board-gutter opacity-10 pointer-events-none">
+<div class="col-span-10 row-span-20 bg-[linear-gradient(to_right,var(--tw-colors-outline-variant)_1px,transparent_1px),linear-gradient(to_bottom,var(--tw-colors-outline-variant)_1px,transparent_1px)] bg-[size:10%_5%]"></div>
+</div>
+<!-- Active Mino (T-Piece) with Luminescence -->
+<div class="col-start-4 row-start-3 bg-primary border-[2px] border-primary relative z-20">
+<div class="absolute inset-[-8px] bg-primary blur-[12px] opacity-40 z-[-1]"></div>
+</div>
+<div class="col-start-5 row-start-3 bg-primary border-[2px] border-primary relative z-20">
+<div class="absolute inset-[-8px] bg-primary blur-[12px] opacity-40 z-[-1]"></div>
+</div>
+<div class="col-start-6 row-start-3 bg-primary border-[2px] border-primary relative z-20">
+<div class="absolute inset-[-8px] bg-primary blur-[12px] opacity-40 z-[-1]"></div>
+</div>
+<div class="col-start-5 row-start-2 bg-primary border-[2px] border-primary relative z-20">
+<div class="absolute inset-[-8px] bg-primary blur-[12px] opacity-40 z-[-1]"></div>
+</div>
+<!-- Ghost Piece -->
+<div class="col-start-4 row-start-19 border-[2px] border-primary/50 bg-primary/10 z-10"></div>
+<div class="col-start-5 row-start-19 border-[2px] border-primary/50 bg-primary/10 z-10"></div>
+<div class="col-start-6 row-start-19 border-[2px] border-primary/50 bg-primary/10 z-10"></div>
+<div class="col-start-5 row-start-18 border-[2px] border-primary/50 bg-primary/10 z-10"></div>
+<!-- Stacked Minoes -->
+<div class="col-start-1 row-start-20 bg-error border border-error-container"></div>
+<div class="col-start-2 row-start-20 bg-error border border-error-container"></div>
+<div class="col-start-3 row-start-20 bg-surface-tint border border-outline-variant"></div>
+<div class="col-start-4 row-start-20 bg-surface-tint border border-outline-variant"></div>
+<div class="col-start-8 row-start-20 bg-secondary border border-secondary-container"></div>
+<div class="col-start-9 row-start-20 bg-secondary border border-secondary-container"></div>
+<div class="col-start-10 row-start-20 bg-error border border-error-container"></div>
+<div class="col-start-1 row-start-19 bg-error border border-error-container"></div>
+<div class="col-start-2 row-start-19 bg-error border border-error-container"></div>
+</div>
+</div>
+</section>
+<!-- Right HUD: NEXT & STATS -->
+<aside class="flex flex-row lg:flex-col gap-md lg:gap-lg order-3 w-full lg:w-[120px] justify-center lg:justify-start">
+<!-- STATS -->
+<div class="flex flex-col gap-sm w-[120px] shrink-0">
+<div class="border-b border-surface-variant pb-1">
+<div class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Score</div>
+<div class="font-label-mono text-headline-md text-primary leading-none mt-1">042,890</div>
+</div>
+<div class="border-b border-surface-variant pb-1">
+<div class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Level</div>
+<div class="font-label-mono text-headline-md text-primary leading-none mt-1">14</div>
+</div>
+<div class="border-b border-surface-variant pb-1">
+<div class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Lines</div>
+<div class="font-label-mono text-headline-md text-primary leading-none mt-1">138</div>
+</div>
+</div>
+<!-- NEXT QUEUE -->
+<div class="flex flex-col gap-xs shrink-0 w-[96px]">
+<h2 class="font-label-mono text-label-mono text-on-surface-variant tracking-widest text-center lg:text-left">NEXT</h2>
+<div class="border-[2px] border-outline-variant bg-surface-container-lowest p-2 flex flex-col gap-sm items-center h-[260px]">
+<!-- Next 1 -->
+<div class="grid grid-cols-4 grid-rows-2 w-[56px] h-[28px] gap-[2px]">
+<div class="col-span-4 row-start-2 bg-secondary border border-secondary-container"></div>
+</div>
+<!-- Next 2 -->
+<div class="grid grid-cols-3 grid-rows-2 w-[42px] h-[28px] gap-[2px] mt-xs">
+<div class="col-start-1 row-start-1 bg-error border border-error-container"></div>
+<div class="col-start-1 row-start-2 bg-error border border-error-container"></div>
+<div class="col-start-2 row-start-2 bg-error border border-error-container"></div>
+<div class="col-start-3 row-start-2 bg-error border border-error-container"></div>
+</div>
+<!-- Next 3 -->
+<div class="grid grid-cols-2 grid-rows-2 w-[28px] h-[28px] gap-[2px] mt-xs">
+<div class="col-span-2 row-span-2 bg-surface-tint border border-outline-variant"></div>
+</div>
+<!-- Next 4 -->
+<div class="grid grid-cols-3 grid-rows-2 w-[42px] h-[28px] gap-[2px] mt-xs">
+<div class="col-start-2 row-start-1 bg-primary border border-surface-variant"></div>
+<div class="col-start-3 row-start-1 bg-primary border border-surface-variant"></div>
+<div class="col-start-1 row-start-2 bg-primary border border-surface-variant"></div>
+<div class="col-start-2 row-start-2 bg-primary border border-surface-variant"></div>
+</div>
+</div>
+</div>
+</aside>
+</div>
+</main>
+<!-- BottomNavBar (Controls) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-xs pb-xl pt-xs lg:hidden bg-surface-container-highest docked full-width rounded-t-lg border-t-2 border-outline shadow-lg h-[88px] shrink-0">
+<button class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:bg-surface-bright rounded-xl w-[64px] h-[64px] active:scale-90 duration-100 bg-surface-container">
+<span class="material-symbols-outlined text-[28px]">arrow_back</span>
+<span class="font-label-sm text-label-sm mt-1">MOVE</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:bg-surface-bright rounded-xl w-[64px] h-[64px] active:scale-90 duration-100 bg-surface-container">
+<span class="material-symbols-outlined text-[28px]">rotate_right</span>
+<span class="font-label-sm text-label-sm mt-1">ROTATE</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:bg-surface-bright rounded-xl w-[64px] h-[64px] active:scale-90 duration-100 bg-surface-container">
+<span class="material-symbols-outlined text-[28px]">arrow_downward</span>
+<span class="font-label-sm text-label-sm mt-1">SOFT</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:bg-surface-bright rounded-xl w-[64px] h-[64px] active:scale-90 duration-100 bg-surface-container">
+<span class="material-symbols-outlined text-[28px]">keyboard_double_arrow_down</span>
+<span class="font-label-sm text-label-sm mt-1">HARD</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:bg-surface-bright rounded-xl w-[64px] h-[64px] active:scale-90 duration-100 bg-surface-container">
+<span class="material-symbols-outlined text-[28px]">swap_horiz</span>
+<span class="font-label-sm text-label-sm mt-1">HOLD</span>
+</button>
+</nav>
+<!-- Debug/Status Bar -->
+<div class="fixed bottom-0 left-0 w-full bg-surface text-on-surface-variant border-t border-surface-variant px-sm py-[4px] z-40 hidden lg:flex justify-between items-center font-label-mono text-[11px] tracking-wide shrink-0">
+<div class="flex gap-4">
+<span>window.app.bridge</span>
+<span class="text-outline">||</span>
+<span>CORE_SYNC: <span class="text-secondary">OK</span></span>
+</div>
+<div class="flex gap-4">
+<span>TICK: <span class="text-primary">60.00hz</span></span>
+<span>LATENCY: <span class="text-primary">12ms</span></span>
+<span>MEM: <span class="text-primary">42MB</span></span>
+</div>
+</div>
+</body></html>

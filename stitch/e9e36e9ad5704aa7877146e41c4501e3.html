@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Game Over - TETRA HUD</title>
+<!-- Google Fonts: Hanken Grotesk & JetBrains Mono -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700;800&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary": "#ffffff",
+                        "background": "#131313",
+                        "inverse-primary": "#5c5f61",
+                        "secondary-fixed-dim": "#b9c7e0",
+                        "on-secondary-fixed-variant": "#3a485c",
+                        "secondary-container": "#3c4a5e",
+                        "surface-dim": "#131313",
+                        "primary-fixed-dim": "#c4c7c9",
+                        "on-surface-variant": "#c4c7c9",
+                        "surface-tint": "#c4c7c9",
+                        "surface-container-highest": "#353535",
+                        "surface-container": "#201f1f",
+                        "tertiary": "#ffffff",
+                        "surface-variant": "#353535",
+                        "error-container": "#93000a",
+                        "surface": "#131313",
+                        "on-primary": "#2d3133",
+                        "inverse-on-surface": "#313030",
+                        "on-secondary-container": "#abb9d2",
+                        "on-error": "#690005",
+                        "on-tertiary-container": "#67645d",
+                        "surface-container-low": "#1c1b1b",
+                        "tertiary-fixed-dim": "#cbc6bd",
+                        "outline-variant": "#444749",
+                        "on-primary-fixed-variant": "#444749",
+                        "on-tertiary-fixed-variant": "#494640",
+                        "on-tertiary-fixed": "#1d1b16",
+                        "on-background": "#e5e2e1",
+                        "surface-container-high": "#2a2a2a",
+                        "surface-container-lowest": "#0e0e0e",
+                        "on-primary-fixed": "#191c1e",
+                        "primary-container": "#e0e3e5",
+                        "secondary": "#b9c7e0",
+                        "on-surface": "#e5e2e1",
+                        "on-secondary": "#233144",
+                        "on-secondary-fixed": "#0d1c2f",
+                        "primary-fixed": "#e0e3e5",
+                        "error": "#ffb4ab",
+                        "on-primary-container": "#626567",
+                        "on-tertiary": "#32302a",
+                        "secondary-fixed": "#d5e3fd",
+                        "tertiary-container": "#e7e2d9",
+                        "surface-bright": "#3a3939",
+                        "tertiary-fixed": "#e7e2d9",
+                        "on-error-container": "#ffdad6",
+                        "outline": "#8e9193",
+                        "inverse-surface": "#e5e2e1"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "md": "24px",
+                        "touch-target": "44px",
+                        "xs": "8px",
+                        "xl": "64px",
+                        "base": "4px",
+                        "board-gutter": "2px",
+                        "sm": "16px",
+                        "lg": "40px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Hanken Grotesk"],
+                        "headline-lg": ["Hanken Grotesk"],
+                        "label-sm": ["Hanken Grotesk"],
+                        "headline-md": ["Hanken Grotesk"],
+                        "display-score": ["Hanken Grotesk"],
+                        "label-mono": ["JetBrains Mono"],
+                        "body-lg": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                        "label-sm": ["12px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                        "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "display-score": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                        "label-mono": ["14px", {"lineHeight": "1.4", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "body-lg": ["18px", {"lineHeight": "1.5", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Custom scrollbar for webkit */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: theme('colors.background'); }
+        ::-webkit-scrollbar-thumb { background: theme('colors.surface-variant'); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: theme('colors.outline'); }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex items-center justify-center p-md overflow-hidden relative selection:bg-primary/30 selection:text-primary">
+<!-- Ambient Background Glow -->
+<div class="absolute inset-0 z-0 flex items-center justify-center pointer-events-none opacity-20">
+<div class="w-[80vw] h-[80vw] max-w-[800px] max-h-[800px] rounded-full bg-error blur-[120px]"></div>
+</div>
+<!-- Background Grid -->
+<div class="absolute inset-0 z-0 pointer-events-none opacity-10" style="background-image: linear-gradient(theme('colors.outline-variant') 1px, transparent 1px), linear-gradient(90deg, theme('colors.outline-variant') 1px, transparent 1px); background-size: 20px 20px;"></div>
+<!-- Main Game Over Card -->
+<main class="w-full max-w-[480px] bg-surface-container border-2 border-outline-variant rounded-lg p-lg flex flex-col gap-xl relative z-10 shadow-2xl">
+<!-- Header Section -->
+<header class="text-center flex flex-col items-center">
+<h1 class="font-display-score text-display-score text-error uppercase tracking-widest drop-shadow-[0_0_15px_rgba(255,180,171,0.6)]">
+                GAME OVER
+            </h1>
+<!-- High Score Badge -->
+<div class="mt-xs inline-flex items-center gap-base bg-error-container/20 border border-error text-error px-sm py-[4px] rounded-full">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+<span class="font-label-mono text-label-mono font-bold tracking-widest">NEW HIGH SCORE</span>
+</div>
+</header>
+<!-- Stats Bento Grid -->
+<div class="grid grid-cols-2 gap-base">
+<!-- Final Score Box -->
+<div class="col-span-2 bg-surface border border-outline-variant p-md rounded flex flex-col items-center justify-center gap-xs relative overflow-hidden group">
+<div class="absolute inset-0 bg-gradient-to-b from-transparent to-primary/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-[0.2em] relative z-10">FINAL SCORE</span>
+<span class="font-display-score text-display-score text-primary drop-shadow-[0_0_10px_rgba(255,255,255,0.3)] relative z-10">
+                    14,250
+                </span>
+</div>
+<!-- Supporting Stats -->
+<div class="bg-surface border border-outline-variant p-sm rounded flex flex-col gap-base border-b-2 border-b-secondary/40">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">HIGH SCORE</span>
+<span class="font-label-mono text-label-mono text-secondary text-[18px]">12,800</span>
+</div>
+<div class="bg-surface border border-outline-variant p-sm rounded flex flex-col gap-base border-b-2 border-b-primary/40">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">LINES CLEARED</span>
+<span class="font-label-mono text-label-mono text-primary text-[18px]">42</span>
+</div>
+<div class="col-span-2 bg-surface border border-outline-variant p-sm rounded flex flex-col items-center gap-base border-b-2 border-b-tertiary/40">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">LEVEL REACHED</span>
+<span class="font-headline-md text-headline-md text-tertiary">08</span>
+</div>
+</div>
+<!-- Actions -->
+<div class="flex flex-col gap-xs">
+<!-- Primary Action -->
+<button class="w-full h-touch-target bg-primary text-on-primary font-headline-md text-headline-md rounded flex items-center justify-center gap-sm hover:bg-surface-bright hover:text-primary border-2 border-primary transition-all duration-150 group">
+<span class="material-symbols-outlined group-hover:-rotate-90 transition-transform duration-300" style="font-variation-settings: 'FILL' 1;">replay</span>
+                PLAY AGAIN
+            </button>
+<!-- Secondary Actions -->
+<div class="grid grid-cols-2 gap-xs mt-base">
+<button class="h-touch-target bg-transparent border-2 border-outline-variant text-on-surface font-label-mono text-label-mono rounded hover:border-primary hover:text-primary transition-colors flex items-center justify-center gap-xs">
+<span class="material-symbols-outlined text-[18px]">upload</span>
+                    SUBMIT
+                </button>
+<button class="h-touch-target bg-transparent border-2 border-outline-variant text-on-surface font-label-mono text-label-mono rounded hover:border-primary hover:text-primary transition-colors flex items-center justify-center gap-xs">
+<span class="material-symbols-outlined text-[18px]">home</span>
+                    MENU
+                </button>
+</div>
+</div>
+<!-- Social Shares -->
+<div class="flex justify-center items-center gap-md pt-sm border-t border-surface-variant mt-sm">
+<span class="font-label-sm text-label-sm text-on-surface-variant mr-xs">SHARE:</span>
+<button aria-label="Share" class="text-on-surface-variant hover:text-primary hover:scale-110 transition-all flex items-center justify-center h-[32px] w-[32px]">
+<span class="material-symbols-outlined">share</span>
+</button>
+<button aria-label="Copy Link" class="text-on-surface-variant hover:text-primary hover:scale-110 transition-all flex items-center justify-center h-[32px] w-[32px]">
+<span class="material-symbols-outlined">link</span>
+</button>
+<button aria-label="QR Code" class="text-on-surface-variant hover:text-primary hover:scale-110 transition-all flex items-center justify-center h-[32px] w-[32px]">
+<span class="material-symbols-outlined">qr_code</span>
+</button>
+</div>
+</main>
+</body></html>

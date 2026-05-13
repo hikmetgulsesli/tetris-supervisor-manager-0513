@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Pause Overlay - TETRA HUD</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700;800&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary": "#ffffff",
+                        "background": "#131313",
+                        "inverse-primary": "#5c5f61",
+                        "secondary-fixed-dim": "#b9c7e0",
+                        "on-secondary-fixed-variant": "#3a485c",
+                        "secondary-container": "#3c4a5e",
+                        "surface-dim": "#131313",
+                        "primary-fixed-dim": "#c4c7c9",
+                        "on-surface-variant": "#c4c7c9",
+                        "surface-tint": "#c4c7c9",
+                        "surface-container-highest": "#353535",
+                        "surface-container": "#201f1f",
+                        "tertiary": "#ffffff",
+                        "surface-variant": "#353535",
+                        "error-container": "#93000a",
+                        "surface": "#131313",
+                        "on-primary": "#2d3133",
+                        "inverse-on-surface": "#313030",
+                        "on-secondary-container": "#abb9d2",
+                        "on-error": "#690005",
+                        "on-tertiary-container": "#67645d",
+                        "surface-container-low": "#1c1b1b",
+                        "tertiary-fixed-dim": "#cbc6bd",
+                        "outline-variant": "#444749",
+                        "on-primary-fixed-variant": "#444749",
+                        "on-tertiary-fixed-variant": "#494640",
+                        "on-tertiary-fixed": "#1d1b16",
+                        "on-background": "#e5e2e1",
+                        "surface-container-high": "#2a2a2a",
+                        "surface-container-lowest": "#0e0e0e",
+                        "on-primary-fixed": "#191c1e",
+                        "primary-container": "#e0e3e5",
+                        "secondary": "#b9c7e0",
+                        "on-surface": "#e5e2e1",
+                        "on-secondary": "#233144",
+                        "on-secondary-fixed": "#0d1c2f",
+                        "primary-fixed": "#e0e3e5",
+                        "error": "#ffb4ab",
+                        "on-primary-container": "#626567",
+                        "on-tertiary": "#32302a",
+                        "secondary-fixed": "#d5e3fd",
+                        "tertiary-container": "#e7e2d9",
+                        "surface-bright": "#3a3939",
+                        "tertiary-fixed": "#e7e2d9",
+                        "on-error-container": "#ffdad6",
+                        "outline": "#8e9193",
+                        "inverse-surface": "#e5e2e1"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "md": "24px",
+                        "touch-target": "44px",
+                        "xs": "8px",
+                        "xl": "64px",
+                        "base": "4px",
+                        "board-gutter": "2px",
+                        "sm": "16px",
+                        "lg": "40px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Hanken Grotesk"],
+                        "headline-lg": ["Hanken Grotesk"],
+                        "label-sm": ["Hanken Grotesk"],
+                        "headline-md": ["Hanken Grotesk"],
+                        "display-score": ["Hanken Grotesk"],
+                        "label-mono": ["JetBrains Mono"],
+                        "body-lg": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                        "label-sm": ["12px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                        "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "display-score": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                        "label-mono": ["14px", {"lineHeight": "1.4", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "body-lg": ["18px", {"lineHeight": "1.5", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen relative overflow-hidden">
+<div class="absolute inset-0 z-0 flex items-center justify-center opacity-30 filter blur-sm">
+<div class="w-[300px] h-[600px] border-2 border-surface-variant flex flex-col gap-board-gutter p-board-gutter bg-surface-lowest">
+<div class="grid grid-cols-10 grid-rows-20 gap-board-gutter w-full h-full">
+<div class="col-start-4 row-start-19 bg-primary opacity-50 shadow-[0_0_15px_rgba(255,255,255,0.5)] h-full w-full"></div>
+<div class="col-start-5 row-start-19 bg-primary opacity-50 shadow-[0_0_15px_rgba(255,255,255,0.5)] h-full w-full"></div>
+<div class="col-start-6 row-start-19 bg-primary opacity-50 shadow-[0_0_15px_rgba(255,255,255,0.5)] h-full w-full"></div>
+<div class="col-start-5 row-start-18 bg-primary opacity-50 shadow-[0_0_15px_rgba(255,255,255,0.5)] h-full w-full"></div>
+</div>
+</div>
+</div>
+<div class="absolute inset-0 z-10 bg-background/80 flex flex-col items-center justify-center backdrop-blur-md">
+<div class="flex flex-col items-center mb-xl w-full max-w-md px-md">
+<h1 class="font-display-score text-display-score text-primary mb-md tracking-widest uppercase" style="text-shadow: 0 0 20px rgba(255,255,255,0.3);">PAUSED</h1>
+<div class="w-full bg-surface border border-surface-variant p-md mb-xl flex flex-col gap-sm">
+<div class="flex justify-between items-end border-b border-surface-variant pb-xs">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Current Score</span>
+<span class="font-label-mono text-label-mono text-primary text-xl">124,500</span>
+</div>
+<div class="flex justify-between items-end border-b border-surface-variant pb-xs">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Level</span>
+<span class="font-label-mono text-label-mono text-secondary">14</span>
+</div>
+<div class="flex justify-between items-end border-b border-surface-variant pb-xs">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Lines Cleared</span>
+<span class="font-label-mono text-label-mono text-on-background">87</span>
+</div>
+<div class="flex justify-between items-end">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Time</span>
+<span class="font-label-mono text-label-mono text-on-background">04:21</span>
+</div>
+</div>
+<div class="w-full flex flex-col gap-sm">
+<button class="w-full h-touch-target bg-primary text-background font-headline-md text-headline-md uppercase hover:bg-white hover:scale-[0.98] transition-all flex items-center justify-center gap-xs focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+                    RESUME
+                </button>
+<button class="w-full h-touch-target bg-transparent border-2 border-surface-variant text-primary font-headline-md text-headline-md uppercase hover:border-primary hover:bg-surface-container transition-all flex items-center justify-center gap-xs focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background">
+<span class="material-symbols-outlined">refresh</span>
+                    RESTART
+                </button>
+<button class="w-full h-touch-target bg-transparent border border-error-container text-error font-label-mono text-label-mono uppercase hover:bg-error-container hover:text-on-error-container transition-all flex items-center justify-center gap-xs mt-md focus:outline-none focus:ring-2 focus:ring-error focus:ring-offset-2 focus:ring-offset-background">
+<span class="material-symbols-outlined">logout</span>
+                    QUIT TO MENU
+                </button>
+</div>
+</div>
+</div>
+</body></html>
