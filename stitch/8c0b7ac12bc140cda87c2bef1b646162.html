@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Tetris Supervisor Manager</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;family=JetBrains+Mono:wght@700&amp;family=Space+Grotesk:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-error-container": "#ffdad6",
+                      "surface-dim": "#131313",
+                      "secondary-container": "#3c4a5e",
+                      "tertiary-container": "#e7e2d9",
+                      "tertiary-fixed-dim": "#cbc6bd",
+                      "on-tertiary": "#32302a",
+                      "inverse-surface": "#e5e2e1",
+                      "on-surface": "#e5e2e1",
+                      "on-tertiary-container": "#67645d",
+                      "on-secondary": "#233144",
+                      "surface": "#131313",
+                      "surface-variant": "#353535",
+                      "surface-tint": "#c4c7c9",
+                      "on-surface-variant": "#c4c7c9",
+                      "on-primary-container": "#626567",
+                      "on-primary-fixed-variant": "#444749",
+                      "surface-bright": "#3a3939",
+                      "tertiary-fixed": "#e7e2d9",
+                      "inverse-primary": "#5c5f61",
+                      "secondary-fixed-dim": "#b9c7e0",
+                      "primary-container": "#e0e3e5",
+                      "secondary": "#b9c7e0",
+                      "outline-variant": "#444749",
+                      "error": "#ffb4ab",
+                      "surface-container-highest": "#353535",
+                      "on-secondary-fixed": "#0d1c2f",
+                      "on-tertiary-fixed": "#1d1b16",
+                      "primary": "#ffffff",
+                      "outline": "#8e9193",
+                      "primary-fixed-dim": "#c4c7c9",
+                      "tertiary": "#ffffff",
+                      "on-tertiary-fixed-variant": "#494640",
+                      "surface-container-low": "#1c1b1b",
+                      "background": "#131313",
+                      "on-error": "#690005",
+                      "on-secondary-container": "#abb9d2",
+                      "on-background": "#e5e2e1",
+                      "inverse-on-surface": "#313030",
+                      "secondary-fixed": "#d5e3fd",
+                      "surface-container-lowest": "#0e0e0e",
+                      "on-primary-fixed": "#191c1e",
+                      "surface-container-high": "#2a2a2a",
+                      "surface-container": "#201f1f",
+                      "on-primary": "#2d3133",
+                      "error-container": "#93000a",
+                      "on-secondary-fixed-variant": "#3a485c",
+                      "primary-fixed": "#e0e3e5"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "touch_target": "44px",
+                      "board_max_width": "400px",
+                      "unit": "4px",
+                      "margin_mobile": "16px",
+                      "gutter": "16px",
+                      "margin_desktop": "32px"
+              },
+              "fontFamily": {
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "h2": [
+                              "Space Grotesk"
+                      ],
+                      "body-sm": [
+                              "Inter"
+                      ],
+                      "hud-label": [
+                              "JetBrains Mono"
+                      ],
+                      "h1": [
+                              "Space Grotesk"
+                      ],
+                      "button": [
+                              "Inter"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "h2": [
+                              "24px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-sm": [
+                              "14px",
+                              {
+                                      "lineHeight": "1.4",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "hud-label": [
+                              "12px",
+                              {
+                                      "lineHeight": "1.0",
+                                      "letterSpacing": "0.1em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "h1": [
+                              "32px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "button": [
+                              "14px",
+                              {
+                                      "lineHeight": "1.0",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "1.5",
+                                      "fontWeight": "400"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+        .grid-bg {
+            background-image: 
+                linear-gradient(to right, rgba(68, 71, 73, 0.1) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(68, 71, 73, 0.1) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col items-center justify-center relative grid-bg p-margin_mobile md:p-margin_desktop">
+<!-- Main Container -->
+<main class="w-full max-w-board_max_width flex flex-col gap-8 z-10">
+<!-- Header / Logo -->
+<header class="flex flex-col items-center text-center gap-2 mb-8">
+<h1 class="font-h1 text-h1 text-primary tracking-tighter uppercase">Tetris Supervisor</h1>
+<p class="font-hud-label text-hud-label text-on-surface-variant uppercase tracking-[0.2em]">Manager Protocol v2.4</p>
+</header>
+<!-- Menu List -->
+<nav class="flex flex-col gap-4 w-full">
+<!-- Primary Action -->
+<button class="bg-primary text-on-primary font-button text-button h-touch_target w-full rounded-none flex items-center justify-center gap-2 hover:bg-primary-container hover:scale-[0.98] transition-transform uppercase tracking-wider focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background group">
+<span class="material-symbols-outlined group-hover:animate-pulse">play_arrow</span>
+                New Game
+            </button>
+<!-- Secondary Actions -->
+<button class="bg-transparent border border-outline-variant text-primary font-button text-button h-touch_target w-full rounded-none flex items-center justify-center gap-2 hover:bg-surface-variant transition-colors uppercase tracking-wider focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background">
+<span class="material-symbols-outlined">settings</span>
+                Options
+            </button>
+<button class="bg-transparent border border-outline-variant text-primary font-button text-button h-touch_target w-full rounded-none flex items-center justify-center gap-2 hover:bg-surface-variant transition-colors uppercase tracking-wider focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background">
+<span class="material-symbols-outlined">help_center</span>
+                How to Play
+            </button>
+<button class="bg-transparent border border-outline-variant text-primary font-button text-button h-touch_target w-full rounded-none flex items-center justify-center gap-2 hover:bg-surface-variant transition-colors uppercase tracking-wider focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background">
+<span class="material-symbols-outlined">leaderboard</span>
+                Leaderboard
+            </button>
+</nav>
+<!-- Footer / Stats Widget -->
+<footer class="mt-8 flex justify-between items-center bg-surface border border-outline-variant p-4">
+<div class="flex flex-col">
+<span class="font-hud-label text-hud-label text-on-surface-variant uppercase">Sys_Status</span>
+<span class="font-body-sm text-body-sm text-primary">ONLINE</span>
+</div>
+<div class="flex flex-col text-right">
+<span class="font-hud-label text-hud-label text-on-surface-variant uppercase">High_Score</span>
+<span class="font-body-sm text-body-sm text-primary font-bold">945,320</span>
+</div>
+</footer>
+</main>
+</body></html>

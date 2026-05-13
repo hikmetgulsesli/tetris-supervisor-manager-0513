@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Tetris Supervisor Manager - Game Options</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&amp;family=Inter:wght@400;600&amp;family=JetBrains+Mono:wght@700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-error-container": "#ffdad6",
+                    "surface-dim": "#131313",
+                    "secondary-container": "#3c4a5e",
+                    "tertiary-container": "#e7e2d9",
+                    "tertiary-fixed-dim": "#cbc6bd",
+                    "on-tertiary": "#32302a",
+                    "inverse-surface": "#e5e2e1",
+                    "on-surface": "#e5e2e1",
+                    "on-tertiary-container": "#67645d",
+                    "on-secondary": "#233144",
+                    "surface": "#131313",
+                    "surface-variant": "#353535",
+                    "surface-tint": "#c4c7c9",
+                    "on-surface-variant": "#c4c7c9",
+                    "on-primary-container": "#626567",
+                    "on-primary-fixed-variant": "#444749",
+                    "surface-bright": "#3a3939",
+                    "tertiary-fixed": "#e7e2d9",
+                    "inverse-primary": "#5c5f61",
+                    "secondary-fixed-dim": "#b9c7e0",
+                    "primary-container": "#e0e3e5",
+                    "secondary": "#b9c7e0",
+                    "outline-variant": "#444749",
+                    "error": "#ffb4ab",
+                    "surface-container-highest": "#353535",
+                    "on-secondary-fixed": "#0d1c2f",
+                    "on-tertiary-fixed": "#1d1b16",
+                    "primary": "#ffffff",
+                    "outline": "#8e9193",
+                    "primary-fixed-dim": "#c4c7c9",
+                    "tertiary": "#ffffff",
+                    "on-tertiary-fixed-variant": "#494640",
+                    "surface-container-low": "#1c1b1b",
+                    "background": "#131313",
+                    "on-error": "#690005",
+                    "on-secondary-container": "#abb9d2",
+                    "on-background": "#e5e2e1",
+                    "inverse-on-surface": "#313030",
+                    "secondary-fixed": "#d5e3fd",
+                    "surface-container-lowest": "#0e0e0e",
+                    "on-primary-fixed": "#191c1e",
+                    "surface-container-high": "#2a2a2a",
+                    "surface-container": "#201f1f",
+                    "on-primary": "#2d3133",
+                    "error-container": "#93000a",
+                    "on-secondary-fixed-variant": "#3a485c",
+                    "primary-fixed": "#e0e3e5"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "touch_target": "44px",
+                    "board_max_width": "400px",
+                    "unit": "4px",
+                    "margin_mobile": "16px",
+                    "gutter": "16px",
+                    "margin_desktop": "32px"
+            },
+            "fontFamily": {
+                    "body-lg": [
+                            "Inter"
+                    ],
+                    "h2": [
+                            "Space Grotesk"
+                    ],
+                    "body-sm": [
+                            "Inter"
+                    ],
+                    "hud-label": [
+                            "JetBrains Mono"
+                    ],
+                    "h1": [
+                            "Space Grotesk"
+                    ],
+                    "button": [
+                            "Inter"
+                    ],
+                    "body-md": [
+                            "Inter"
+                    ]
+            },
+            "fontSize": {
+                    "body-lg": [
+                            "18px",
+                            {
+                                    "lineHeight": "1.6",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "h2": [
+                            "24px",
+                            {
+                                    "lineHeight": "1.2",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "body-sm": [
+                            "14px",
+                            {
+                                    "lineHeight": "1.4",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "hud-label": [
+                            "12px",
+                            {
+                                    "lineHeight": "1.0",
+                                    "letterSpacing": "0.1em",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "h1": [
+                            "32px",
+                            {
+                                    "lineHeight": "1.2",
+                                    "letterSpacing": "-0.02em",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "button": [
+                            "14px",
+                            {
+                                    "lineHeight": "1.0",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "body-md": [
+                            "16px",
+                            {
+                                    "lineHeight": "1.5",
+                                    "fontWeight": "400"
+                            }
+                    ]
+            }
+    },
+        },
+      }
+    </script>
+<style>
+        /* Custom styles for toggles and sliders to match Brutalist aesthetic */
+        .toggle-checkbox:checked {
+            right: 0;
+            border-color: #22C55E;
+        }
+        .toggle-checkbox:checked + .toggle-label {
+            background-color: #22C55E;
+        }
+        .toggle-checkbox {
+            right: 0;
+            z-index: 1;
+            border-color: #334155;
+            transition: all 0.2s ease;
+        }
+        .toggle-label {
+            background-color: #111827;
+            transition: all 0.2s ease;
+            border: 1px solid #334155;
+        }
+        
+        input[type=range] {
+            -webkit-appearance: none;
+            width: 100%;
+            background: transparent;
+        }
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 24px;
+            width: 16px;
+            background: #F8FAFC;
+            cursor: pointer;
+            margin-top: -10px;
+            border-radius: 0;
+        }
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 4px;
+            cursor: pointer;
+            background: #334155;
+            border-radius: 0;
+        }
+        input[type=range]:focus {
+            outline: none;
+        }
+        input[type=range]:focus::-webkit-slider-runnable-track {
+            background: #444749;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex flex-col">
+<!-- TopAppBar from JSON -->
+<header class="bg-surface dark:bg-surface text-primary dark:text-primary font-h2 text-h2 uppercase border-b border-outline-variant dark:border-outline-variant fixed top-0 w-full z-50 flex justify-between items-center px-margin_mobile md:px-margin_desktop h-touch_target">
+<div class="font-h2 text-h2 text-primary dark:text-primary tracking-tighter hover:border-primary transition-colors">
+            Tetris Supervisor Manager
+        </div>
+<div class="flex items-center space-x-4">
+<!-- Hidden search bar per JSON -->
+<button class="text-primary font-bold hover:border-primary transition-colors hover:scale-95 duration-100 flex items-center justify-center w-touch_target h-touch_target">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">settings</span>
+</button>
+<button class="text-on-surface-variant hover:border-primary transition-colors flex items-center justify-center w-touch_target h-touch_target">
+<span class="material-symbols-outlined">help</span>
+</button>
+</div>
+</header>
+<div class="flex flex-1 pt-touch_target h-[calc(100vh-44px)]">
+<!-- SideNavBar from JSON -->
+<nav class="bg-surface-container dark:bg-surface-container text-primary dark:text-primary font-hud-label text-hud-label border-r border-outline-variant hidden md:flex flex-col w-64 fixed left-0 top-touch_target h-[calc(100vh-44px)] p-unit">
+<div class="mb-8 p-4">
+<h2 class="font-h2 text-h2 text-primary">HUD PANEL</h2>
+<p class="text-on-surface-variant mt-1">Vitals &amp; Metrics</p>
+</div>
+<ul class="space-y-2 flex-1">
+<li>
+<a class="text-on-surface-variant hover:text-primary hover:bg-surface-variant transition-all flex items-center p-3" href="#">
+<span class="material-symbols-outlined mr-3">grid_view</span>
+                        Dashboard
+                    </a>
+</li>
+<li>
+<a class="text-on-surface-variant hover:text-primary hover:bg-surface-variant transition-all flex items-center p-3" href="#">
+<span class="material-symbols-outlined mr-3">leaderboard</span>
+                        Leaderboard
+                    </a>
+</li>
+<li>
+<!-- Active State -->
+<a class="bg-primary text-on-primary font-bold hover:bg-surface-variant transition-all flex items-center p-3" href="#">
+<span class="material-symbols-outlined mr-3" style="font-variation-settings: 'FILL' 1;">settings</span>
+                        Settings
+                    </a>
+</li>
+<li>
+<a class="text-on-surface-variant hover:text-primary hover:bg-surface-variant transition-all flex items-center p-3" href="#">
+<span class="material-symbols-outlined mr-3">help_center</span>
+                        Help
+                    </a>
+</li>
+</ul>
+<div class="mt-auto p-4">
+<button class="w-full bg-primary text-on-primary font-button text-button uppercase py-3 border border-transparent hover:border-outline-variant transition-all rounded-none flex items-center justify-center h-touch_target">
+                    START GAME
+                </button>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 md:ml-64 p-margin_mobile md:p-margin_desktop overflow-y-auto">
+<div class="max-w-4xl mx-auto">
+<header class="mb-8 border-b border-outline-variant pb-4">
+<h1 class="font-h1 text-h1 text-primary">Game Options</h1>
+<p class="font-hud-label text-hud-label text-on-surface-variant mt-2 uppercase">Configuration Parameters</p>
+</header>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<!-- Gameplay Card -->
+<section class="bg-surface border border-outline-variant p-6 flex flex-col gap-6">
+<div class="border-b border-outline-variant pb-2 mb-2">
+<h2 class="font-hud-label text-hud-label text-primary uppercase flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">sports_esports</span>
+                                Gameplay
+                            </h2>
+</div>
+<!-- Toggle -->
+<div class="flex justify-between items-center">
+<span class="font-body-lg text-body-lg">Ghost Piece</span>
+<div class="relative inline-block w-12 mr-2 align-middle select-none transition duration-200 ease-in">
+<input checked="" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-primary border-4 appearance-none cursor-pointer" id="ghost-piece" name="toggle" type="checkbox"/>
+<label class="toggle-label block overflow-hidden h-6 rounded-full bg-surface-variant cursor-pointer" for="ghost-piece"></label>
+</div>
+</div>
+<!-- Slider -->
+<div class="flex flex-col gap-4 mt-4">
+<div class="flex justify-between items-center">
+<span class="font-body-lg text-body-lg">Auto-Repeat Rate</span>
+<span class="font-hud-label text-hud-label text-primary">30ms</span>
+</div>
+<input class="w-full h-2 bg-surface-variant rounded-none outline-none" max="100" min="1" type="range" value="30"/>
+</div>
+</section>
+<!-- Audio Card -->
+<section class="bg-surface border border-outline-variant p-6 flex flex-col gap-6">
+<div class="border-b border-outline-variant pb-2 mb-2">
+<h2 class="font-hud-label text-hud-label text-primary uppercase flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">volume_up</span>
+                                Audio
+                            </h2>
+</div>
+<!-- Sound Effects -->
+<div class="flex flex-col gap-4">
+<div class="flex justify-between items-center">
+<span class="font-body-lg text-body-lg">Sound Effects</span>
+<div class="relative inline-block w-12 mr-2 align-middle select-none transition duration-200 ease-in">
+<input checked="" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-primary border-4 appearance-none cursor-pointer" id="sfx-toggle" name="toggle" type="checkbox"/>
+<label class="toggle-label block overflow-hidden h-6 rounded-full bg-surface-variant cursor-pointer" for="sfx-toggle"></label>
+</div>
+</div>
+<input class="w-full h-2 bg-surface-variant rounded-none outline-none" max="100" min="0" type="range" value="80"/>
+</div>
+<div class="h-[1px] bg-outline-variant w-full my-2"></div>
+<!-- Music -->
+<div class="flex flex-col gap-4">
+<div class="flex justify-between items-center">
+<span class="font-body-lg text-body-lg">Music</span>
+<div class="relative inline-block w-12 mr-2 align-middle select-none transition duration-200 ease-in">
+<input class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-primary border-4 appearance-none cursor-pointer" id="music-toggle" name="toggle" type="checkbox"/>
+<label class="toggle-label block overflow-hidden h-6 rounded-full bg-surface-variant cursor-pointer" for="music-toggle"></label>
+</div>
+</div>
+<input class="w-full h-2 bg-surface-variant rounded-none outline-none" max="100" min="0" type="range" value="40"/>
+</div>
+</section>
+<!-- Difficulty Card -->
+<section class="bg-surface border border-outline-variant p-6 flex flex-col gap-6 md:col-span-2">
+<div class="border-b border-outline-variant pb-2 mb-2">
+<h2 class="font-hud-label text-hud-label text-primary uppercase flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">speed</span>
+                                Difficulty
+                            </h2>
+</div>
+<div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+<div class="flex flex-col">
+<span class="font-body-lg text-body-lg">Starting Level</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Determines initial drop speed</span>
+</div>
+<div class="relative w-full sm:w-48">
+<select class="block w-full appearance-none bg-background border border-outline-variant text-primary py-3 px-4 pr-8 rounded-none leading-tight focus:outline-none focus:border-success focus:ring-1 focus:ring-success font-hud-label text-hud-label h-touch_target">
+<option value="1">Level 1</option>
+<option value="2">Level 2</option>
+<option value="3">Level 3</option>
+<option value="4">Level 4</option>
+<option selected="" value="5">Level 5</option>
+<option value="10">Level 10</option>
+<option value="15">Level 15</option>
+</select>
+<div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-on-surface-variant">
+<span class="material-symbols-outlined">expand_more</span>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Action Buttons -->
+<div class="mt-8 pt-6 border-t border-outline-variant flex flex-col-reverse sm:flex-row justify-end gap-4">
+<button class="bg-transparent border border-outline-variant text-primary font-button text-button uppercase py-2 px-6 h-touch_target hover:border-primary transition-colors flex items-center justify-center">
+                        Reset to Defaults
+                    </button>
+<button class="bg-primary text-on-primary font-button text-button uppercase py-2 px-6 h-touch_target hover:bg-surface-variant hover:text-primary border border-transparent hover:border-primary transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">save</span>
+                        Save Changes
+                    </button>
+</div>
+</div>
+</main>
+</div>
+<!-- BottomNavBar from JSON -->
+<nav class="bg-surface-container-highest dark:bg-surface-container-highest text-primary dark:text-primary font-button text-button uppercase border-t border-outline-variant fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-touch_target md:hidden">
+<button class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:bg-primary-container h-full w-full">
+<span class="material-symbols-outlined mb-1">rotate_right</span>
+<span class="text-[10px]">Rotate</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:bg-primary-container h-full w-full">
+<span class="material-symbols-outlined mb-1">south</span>
+<span class="text-[10px]">Drop</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:bg-primary-container h-full w-full">
+<span class="material-symbols-outlined mb-1">inventory_2</span>
+<span class="text-[10px]">Hold</span>
+</button>
+<!-- Active State for Menu on Mobile -->
+<button class="flex flex-col items-center justify-center bg-primary text-on-primary p-2 hover:bg-primary-container h-full w-full">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 1;">menu</span>
+<span class="text-[10px]">Menu</span>
+</button>
+</nav>
+</body></html>

@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Tetris Supervisor Manager - Gameplay</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&amp;family=Inter:wght@400;600&amp;family=JetBrains+Mono:wght@700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-error-container": "#ffdad6",
+                        "surface-dim": "#131313",
+                        "secondary-container": "#3c4a5e",
+                        "tertiary-container": "#e7e2d9",
+                        "tertiary-fixed-dim": "#cbc6bd",
+                        "on-tertiary": "#32302a",
+                        "inverse-surface": "#e5e2e1",
+                        "on-surface": "#e5e2e1",
+                        "on-tertiary-container": "#67645d",
+                        "on-secondary": "#233144",
+                        "surface": "#131313",
+                        "surface-variant": "#353535",
+                        "surface-tint": "#c4c7c9",
+                        "on-surface-variant": "#c4c7c9",
+                        "on-primary-container": "#626567",
+                        "on-primary-fixed-variant": "#444749",
+                        "surface-bright": "#3a3939",
+                        "tertiary-fixed": "#e7e2d9",
+                        "inverse-primary": "#5c5f61",
+                        "secondary-fixed-dim": "#b9c7e0",
+                        "primary-container": "#e0e3e5",
+                        "secondary": "#b9c7e0",
+                        "outline-variant": "#444749",
+                        "error": "#ffb4ab",
+                        "surface-container-highest": "#353535",
+                        "on-secondary-fixed": "#0d1c2f",
+                        "on-tertiary-fixed": "#1d1b16",
+                        "primary": "#ffffff",
+                        "outline": "#8e9193",
+                        "primary-fixed-dim": "#c4c7c9",
+                        "tertiary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#494640",
+                        "surface-container-low": "#1c1b1b",
+                        "background": "#131313",
+                        "on-error": "#690005",
+                        "on-secondary-container": "#abb9d2",
+                        "on-background": "#e5e2e1",
+                        "inverse-on-surface": "#313030",
+                        "secondary-fixed": "#d5e3fd",
+                        "surface-container-lowest": "#0e0e0e",
+                        "on-primary-fixed": "#191c1e",
+                        "surface-container-high": "#2a2a2a",
+                        "surface-container": "#201f1f",
+                        "on-primary": "#2d3133",
+                        "error-container": "#93000a",
+                        "on-secondary-fixed-variant": "#3a485c",
+                        "primary-fixed": "#e0e3e5"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "touch_target": "44px",
+                        "board_max_width": "400px",
+                        "unit": "4px",
+                        "margin_mobile": "16px",
+                        "gutter": "16px",
+                        "margin_desktop": "32px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "h2": ["Space Grotesk"],
+                        "body-sm": ["Inter"],
+                        "hud-label": ["JetBrains Mono"],
+                        "h1": ["Space Grotesk"],
+                        "button": ["Inter"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "h2": ["24px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                        "body-sm": ["14px", {"lineHeight": "1.4", "fontWeight": "400"}],
+                        "hud-label": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.1em", "fontWeight": "700"}],
+                        "h1": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "button": ["14px", {"lineHeight": "1.0", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .grid-bg {
+            background-size: 10% 5%;
+            background-image: 
+                linear-gradient(to right, #353535 1px, transparent 1px),
+                linear-gradient(to bottom, #353535 1px, transparent 1px);
+        }
+        .tetromino-block {
+            box-shadow: inset 0 0 0 1px rgba(255,255,255,0.2), inset 0 2px 0 0 rgba(255,255,255,0.3);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col pt-touch_target pb-touch_target md:pb-0 md:pl-64">
+<!-- TopAppBar -->
+<header class="bg-surface dark:bg-surface border-b border-outline-variant dark:border-outline-variant fixed top-0 w-full z-50 flex justify-between items-center px-margin_mobile md:px-margin_desktop h-touch_target">
+<div class="font-h2 text-h2 text-primary dark:text-primary tracking-tighter uppercase">Tetris Supervisor Manager</div>
+<div class="flex items-center gap-4 text-primary dark:text-primary">
+<button class="hover:border-primary transition-colors hover:bg-surface-variant p-1 rounded"><span class="material-symbols-outlined" data-icon="settings">settings</span></button>
+<button class="hover:border-primary transition-colors hover:bg-surface-variant p-1 rounded"><span class="material-symbols-outlined" data-icon="help">help</span></button>
+</div>
+</header>
+<!-- SideNavBar (Desktop) -->
+<nav class="bg-surface-container dark:bg-surface-container border-r border-outline-variant hidden md:flex flex-col w-64 fixed left-0 top-touch_target h-[calc(100vh-44px)] p-unit">
+<div class="p-4 border-b border-outline-variant mb-4">
+<h2 class="font-h2 text-h2 text-primary tracking-tighter">HUD PANEL</h2>
+<p class="font-hud-label text-hud-label text-on-surface-variant mt-1">Vitals &amp; Metrics</p>
+</div>
+<div class="flex-1 space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 bg-primary text-on-primary font-bold font-button text-button uppercase hover:bg-surface-variant transition-all rounded-DEFAULT" href="#">
+<span class="material-symbols-outlined" data-icon="grid_view">grid_view</span> Dashboard
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-primary font-button text-button uppercase hover:bg-surface-variant transition-all rounded-DEFAULT" href="#">
+<span class="material-symbols-outlined" data-icon="leaderboard">leaderboard</span> Leaderboard
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-primary font-button text-button uppercase hover:bg-surface-variant transition-all rounded-DEFAULT" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span> Settings
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-primary font-button text-button uppercase hover:bg-surface-variant transition-all rounded-DEFAULT" href="#">
+<span class="material-symbols-outlined" data-icon="help_center">help_center</span> Help
+            </a>
+</div>
+<div class="mt-auto p-4">
+<button class="w-full py-3 bg-primary text-surface border border-outline-variant font-button text-button uppercase hover:bg-surface-variant hover:text-primary transition-all">START GAME</button>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-1 flex flex-col lg:flex-row items-center justify-center gap-gutter p-margin_mobile md:p-margin_desktop w-full max-w-7xl mx-auto h-[calc(100vh-88px)] md:h-[calc(100vh-44px)]">
+<!-- Left HUD -->
+<aside class="flex flex-row lg:flex-col gap-4 w-full lg:w-48 order-2 lg:order-1 justify-center lg:justify-start">
+<div class="bg-surface border border-outline-variant p-4 w-1/3 lg:w-full">
+<div class="font-hud-label text-hud-label text-on-surface-variant mb-2 border-b border-outline-variant pb-1">HOLD</div>
+<div class="aspect-square bg-surface-container flex items-center justify-center">
+<!-- Empty Hold -->
+</div>
+</div>
+<div class="bg-surface border border-outline-variant p-4 w-1/3 lg:w-full">
+<div class="font-hud-label text-hud-label text-on-surface-variant mb-2 border-b border-outline-variant pb-1">LEVEL</div>
+<div class="font-hud-label text-h1 text-primary tracking-tighter">05</div>
+</div>
+<div class="bg-surface border border-outline-variant p-4 w-1/3 lg:w-full">
+<div class="font-hud-label text-hud-label text-on-surface-variant mb-2 border-b border-outline-variant pb-1">LINES</div>
+<div class="font-hud-label text-h1 text-primary tracking-tighter">42</div>
+</div>
+</aside>
+<!-- The Board -->
+<section class="order-1 lg:order-2 flex-shrink-0 w-full max-w-board_max_width aspect-[1/2] bg-surface-container-lowest border-2 border-outline-variant relative grid-bg" style="max-height: calc(100vh - 150px); max-width: calc((100vh - 150px) / 2);">
+<!-- Active Piece (L Shape - Orange) -->
+<div class="absolute w-[10%] h-[5%] bg-[#F97316] tetromino-block left-[40%] top-[30%] z-10"></div>
+<div class="absolute w-[10%] h-[5%] bg-[#F97316] tetromino-block left-[40%] top-[35%] z-10"></div>
+<div class="absolute w-[10%] h-[5%] bg-[#F97316] tetromino-block left-[40%] top-[40%] z-10"></div>
+<div class="absolute w-[10%] h-[5%] bg-[#F97316] tetromino-block left-[50%] top-[40%] z-10"></div>
+<!-- Ghost Piece -->
+<div class="absolute w-[10%] h-[5%] border-2 border-[#F97316] opacity-30 left-[40%] top-[80%]"></div>
+<div class="absolute w-[10%] h-[5%] border-2 border-[#F97316] opacity-30 left-[40%] top-[85%]"></div>
+<div class="absolute w-[10%] h-[5%] border-2 border-[#F97316] opacity-30 left-[40%] top-[90%]"></div>
+<div class="absolute w-[10%] h-[5%] border-2 border-[#F97316] opacity-30 left-[50%] top-[90%]"></div>
+<!-- Stacked Pieces (Bottom) -->
+<div class="absolute w-[10%] h-[5%] bg-[#3B82F6] tetromino-block left-[0%] top-[95%]"></div>
+<div class="absolute w-[10%] h-[5%] bg-[#3B82F6] tetromino-block left-[10%] top-[95%]"></div>
+<div class="absolute w-[10%] h-[5%] bg-[#10B981] tetromino-block left-[20%] top-[95%]"></div>
+<div class="absolute w-[10%] h-[5%] bg-[#10B981] tetromino-block left-[30%] top-[95%]"></div>
+<div class="absolute w-[10%] h-[5%] bg-[#8B5CF6] tetromino-block left-[70%] top-[95%]"></div>
+<div class="absolute w-[10%] h-[5%] bg-[#8B5CF6] tetromino-block left-[80%] top-[95%]"></div>
+<div class="absolute w-[10%] h-[5%] bg-[#8B5CF6] tetromino-block left-[90%] top-[95%]"></div>
+<div class="absolute w-[10%] h-[5%] bg-[#10B981] tetromino-block left-[20%] top-[90%]"></div>
+<div class="absolute w-[10%] h-[5%] bg-[#10B981] tetromino-block left-[30%] top-[90%]"></div>
+<div class="absolute w-[10%] h-[5%] bg-[#8B5CF6] tetromino-block left-[80%] top-[90%]"></div>
+<div class="absolute w-[10%] h-[5%] bg-[#EF4444] tetromino-block left-[20%] top-[85%]"></div>
+<div class="absolute w-[10%] h-[5%] bg-[#EF4444] tetromino-block left-[30%] top-[85%]"></div>
+<div class="absolute w-[10%] h-[5%] bg-[#EF4444] tetromino-block left-[20%] top-[80%]"></div>
+<div class="absolute w-[10%] h-[5%] bg-[#EF4444] tetromino-block left-[30%] top-[80%]"></div>
+</section>
+<!-- Right HUD -->
+<aside class="flex flex-row lg:flex-col gap-4 w-full lg:w-48 order-3 lg:order-3 justify-center lg:justify-start">
+<div class="bg-surface border border-outline-variant p-4 w-1/2 lg:w-full">
+<div class="font-hud-label text-hud-label text-on-surface-variant mb-2 border-b border-outline-variant pb-1">NEXT</div>
+<div class="aspect-square bg-surface-container flex items-center justify-center relative p-4">
+<!-- T Piece -->
+<div class="relative w-full h-full flex items-center justify-center">
+<div class="absolute w-[30%] h-[30%] bg-[#A855F7] tetromino-block top-[20%] left-[35%]"></div>
+<div class="absolute w-[30%] h-[30%] bg-[#A855F7] tetromino-block top-[50%] left-[5%]"></div>
+<div class="absolute w-[30%] h-[30%] bg-[#A855F7] tetromino-block top-[50%] left-[35%]"></div>
+<div class="absolute w-[30%] h-[30%] bg-[#A855F7] tetromino-block top-[50%] left-[65%]"></div>
+</div>
+</div>
+</div>
+<div class="bg-surface border border-outline-variant p-4 w-1/2 lg:w-full">
+<div class="font-hud-label text-hud-label text-on-surface-variant mb-2 border-b border-outline-variant pb-1">SCORE</div>
+<div class="font-hud-label text-h2 text-primary tracking-tighter">12,450</div>
+</div>
+<!-- Desktop Controls Legend -->
+<div class="bg-surface border border-outline-variant p-4 hidden lg:block mt-auto">
+<div class="font-hud-label text-hud-label text-on-surface-variant mb-2 border-b border-outline-variant pb-1">CONTROLS</div>
+<div class="space-y-2 mt-4 font-hud-label text-hud-label">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 border border-outline-variant flex items-center justify-center text-primary bg-surface-container"><span class="material-symbols-outlined text-sm">arrow_upward</span></div>
+<span class="text-on-surface-variant">ROTATE</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 border border-outline-variant flex items-center justify-center text-primary bg-surface-container"><span class="material-symbols-outlined text-sm">arrow_downward</span></div>
+<span class="text-on-surface-variant">DROP</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-16 h-6 border border-outline-variant flex items-center justify-center text-primary bg-surface-container text-[10px]">SPACE</div>
+<span class="text-on-surface-variant">HARD DROP</span>
+</div>
+</div>
+</div>
+</aside>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="bg-surface-container-highest dark:bg-surface-container-highest border-t border-outline-variant fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-touch_target md:hidden">
+<button class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:bg-primary-container flex-1 h-full">
+<span class="material-symbols-outlined" data-icon="rotate_right">rotate_right</span>
+<span class="font-button text-[10px] uppercase mt-1">Rotate</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:bg-primary-container flex-1 h-full border-l border-outline-variant">
+<span class="material-symbols-outlined" data-icon="south">south</span>
+<span class="font-button text-[10px] uppercase mt-1">Drop</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:bg-primary-container flex-1 h-full border-l border-outline-variant">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+<span class="font-button text-[10px] uppercase mt-1">Hold</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:bg-primary-container flex-1 h-full border-l border-outline-variant">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+<span class="font-button text-[10px] uppercase mt-1">Menu</span>
+</button>
+</nav>
+</body></html>

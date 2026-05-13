@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Paused - Tetris Supervisor Manager</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;family=JetBrains+Mono:wght@700&amp;family=Space+Grotesk:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-error-container": "#ffdad6",
+                      "surface-dim": "#131313",
+                      "secondary-container": "#3c4a5e",
+                      "tertiary-container": "#e7e2d9",
+                      "tertiary-fixed-dim": "#cbc6bd",
+                      "on-tertiary": "#32302a",
+                      "inverse-surface": "#e5e2e1",
+                      "on-surface": "#e5e2e1",
+                      "on-tertiary-container": "#67645d",
+                      "on-secondary": "#233144",
+                      "surface": "#131313",
+                      "surface-variant": "#353535",
+                      "surface-tint": "#c4c7c9",
+                      "on-surface-variant": "#c4c7c9",
+                      "on-primary-container": "#626567",
+                      "on-primary-fixed-variant": "#444749",
+                      "surface-bright": "#3a3939",
+                      "tertiary-fixed": "#e7e2d9",
+                      "inverse-primary": "#5c5f61",
+                      "secondary-fixed-dim": "#b9c7e0",
+                      "primary-container": "#e0e3e5",
+                      "secondary": "#b9c7e0",
+                      "outline-variant": "#444749",
+                      "error": "#ffb4ab",
+                      "surface-container-highest": "#353535",
+                      "on-secondary-fixed": "#0d1c2f",
+                      "on-tertiary-fixed": "#1d1b16",
+                      "primary": "#ffffff",
+                      "outline": "#8e9193",
+                      "primary-fixed-dim": "#c4c7c9",
+                      "tertiary": "#ffffff",
+                      "on-tertiary-fixed-variant": "#494640",
+                      "surface-container-low": "#1c1b1b",
+                      "background": "#131313",
+                      "on-error": "#690005",
+                      "on-secondary-container": "#abb9d2",
+                      "on-background": "#e5e2e1",
+                      "inverse-on-surface": "#313030",
+                      "secondary-fixed": "#d5e3fd",
+                      "surface-container-lowest": "#0e0e0e",
+                      "on-primary-fixed": "#191c1e",
+                      "surface-container-high": "#2a2a2a",
+                      "surface-container": "#201f1f",
+                      "on-primary": "#2d3133",
+                      "error-container": "#93000a",
+                      "on-secondary-fixed-variant": "#3a485c",
+                      "primary-fixed": "#e0e3e5"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "touch_target": "44px",
+                      "board_max_width": "400px",
+                      "unit": "4px",
+                      "margin_mobile": "16px",
+                      "gutter": "16px",
+                      "margin_desktop": "32px"
+              },
+              "fontFamily": {
+                      "body-lg": ["Inter"],
+                      "h2": ["Space Grotesk"],
+                      "body-sm": ["Inter"],
+                      "hud-label": ["JetBrains Mono"],
+                      "h1": ["Space Grotesk"],
+                      "button": ["Inter"],
+                      "body-md": ["Inter"]
+              },
+              "fontSize": {
+                      "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                      "h2": ["24px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                      "body-sm": ["14px", {"lineHeight": "1.4", "fontWeight": "400"}],
+                      "hud-label": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.1em", "fontWeight": "700"}],
+                      "h1": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "button": ["14px", {"lineHeight": "1.0", "fontWeight": "600"}],
+                      "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}]
+              }
+            }
+          }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background min-h-screen font-body-md relative overflow-hidden flex flex-col items-center justify-center">
+<!-- Blurred/Dimmed Background Context (Simulated Game Board) -->
+<div class="absolute inset-0 z-0 flex items-center justify-center opacity-30 blur-sm pointer-events-none" data-alt="A dark, high-contrast grid pattern resembling an arcade puzzle game board. Neon blue and cyan blocks are arranged structurally against a deep space background. The visual style is modern-brutalist with sharp clean lines, suitable for a professional management HUD." style="background-image: linear-gradient(rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.8)), url('https://lh3.googleusercontent.com/aida-public/AB6AXuD5aOJf1zEZNCN0YRI_JOc5qTyvr8_2oVxOCSOCDx6a0_ylXISjTkBcwHboTP0-4wkgnI5wscNtowUOT_dpTRVcW_tqhSkC9xTwo-5sEuLtUuGbp2M57FV_TH_eBL8yC-4ROlrOJZa9a7cQDrye1dmyIH28850_7_7RRLSi8t1xjID6VO2_H9mMi5i9McsVjYqegnj_rixjYBY8TvNJKRGGIeSZeePT28wlqJGpaatAaswBlDLe8ndcvWazHGjspaemEvbb-d6P6e35'); background-size: cover; background-position: center;">
+<div class="w-board_max_width h-[800px] border border-surface-variant bg-surface opacity-50"></div>
+</div>
+<!-- Modal Overlay Container -->
+<div class="relative z-10 w-full max-w-[320px] mx-margin_mobile md:mx-auto flex flex-col items-center">
+<!-- Pause Icon -->
+<div class="mb-gutter flex items-center justify-center w-16 h-16 rounded-full border border-outline-variant bg-surface shadow-[0_0_15px_rgba(255,255,255,0.1)]">
+<span class="material-symbols-outlined text-[40px] text-primary" style="font-variation-settings: 'FILL' 1;">pause</span>
+</div>
+<!-- Header -->
+<h1 class="font-h1 text-h1 text-primary mb-margin_desktop uppercase tracking-widest text-center">
+            PAUSED
+        </h1>
+<!-- Actions Container -->
+<div class="w-full flex flex-col gap-unit p-gutter bg-surface border border-outline-variant rounded-none shadow-[inset_0_0_0_1px_rgba(51,65,85,0.5)]">
+<!-- Primary Action -->
+<button class="w-full h-touch_target bg-primary text-surface-dim font-button text-button uppercase flex items-center justify-center gap-2 hover:bg-surface-variant hover:text-primary hover:border hover:border-primary transition-all duration-100 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-surface">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+                Resume Game
+            </button>
+<div class="h-px w-full bg-outline-variant my-unit"></div>
+<!-- Secondary Actions -->
+<button class="w-full h-touch_target bg-transparent border border-outline-variant text-on-surface font-button text-button uppercase flex items-center justify-center gap-2 hover:bg-surface-variant hover:border-primary hover:text-primary transition-all duration-100 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-surface">
+<span class="material-symbols-outlined text-[20px]">restart_alt</span>
+                Restart
+            </button>
+<button class="w-full h-touch_target bg-transparent border border-outline-variant text-on-surface font-button text-button uppercase flex items-center justify-center gap-2 hover:bg-surface-variant hover:border-primary hover:text-primary transition-all duration-100 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-surface">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+                Settings
+            </button>
+<div class="h-px w-full bg-outline-variant my-unit"></div>
+<!-- Quit Action -->
+<button class="w-full h-touch_target bg-transparent border border-error/50 text-error font-button text-button uppercase flex items-center justify-center gap-2 hover:bg-error/10 hover:border-error transition-all duration-100 focus:outline-none focus:ring-2 focus:ring-error focus:ring-offset-2 focus:ring-offset-surface">
+<span class="material-symbols-outlined text-[20px]">logout</span>
+                Quit to Menu
+            </button>
+</div>
+</div>
+</body></html>
