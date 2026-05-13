@@ -1,0 +1,12 @@
+export { MainMenu } from "./MainMenu";
+export type { MainMenuProps, MainMenuActionId } from "./MainMenu";
+export { GamePaused } from "./GamePaused";
+export type { GamePausedProps, GamePausedActionId } from "./GamePaused";
+export { TetraGameBoard } from "./TetraGameBoard";
+export type { TetraGameBoardProps, TetraGameBoardActionId } from "./TetraGameBoard";
+export { GameSettings } from "./GameSettings";
+export type { GameSettingsProps, GameSettingsActionId } from "./GameSettings";
+export { GameOverResult } from "./GameOverResult";
+export type { GameOverResultProps, GameOverResultActionId } from "./GameOverResult";
+export { ControlsRules } from "./ControlsRules";
+export type { ControlsRulesProps, ControlsRulesActionId } from "./ControlsRules";

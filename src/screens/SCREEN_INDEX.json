@@ -1,0 +1,260 @@
+[
+  {
+    "screenId": "0b27c3d5054844f5b29c135b08d55a1c",
+    "title": "Main Menu",
+    "componentName": "MainMenu",
+    "file": "src/screens/MainMenu.tsx",
+    "buttons": 6,
+    "inputs": 0,
+    "links": 0,
+    "actions": [
+      {
+        "id": "start-game-1",
+        "kind": "button",
+        "label": "START GAME",
+        "index": 0
+      },
+      {
+        "id": "resume-2",
+        "kind": "button",
+        "label": "RESUME",
+        "index": 1
+      },
+      {
+        "id": "restart-3",
+        "kind": "button",
+        "label": "RESTART",
+        "index": 2
+      },
+      {
+        "id": "leaderboard-4",
+        "kind": "button",
+        "label": "LEADERBOARD",
+        "index": 3
+      },
+      {
+        "id": "settings-5",
+        "kind": "button",
+        "label": "SETTINGS",
+        "index": 4
+      },
+      {
+        "id": "how-to-play-6",
+        "kind": "button",
+        "label": "HOW TO PLAY",
+        "index": 5
+      }
+    ]
+  },
+  {
+    "screenId": "de8ec1478cad4a09b34fe7acc2b32074",
+    "title": "Game Paused",
+    "componentName": "GamePaused",
+    "file": "src/screens/GamePaused.tsx",
+    "buttons": 3,
+    "inputs": 0,
+    "links": 0,
+    "actions": [
+      {
+        "id": "resume-1",
+        "kind": "button",
+        "label": "RESUME",
+        "index": 0
+      },
+      {
+        "id": "restart-2",
+        "kind": "button",
+        "label": "RESTART",
+        "index": 1
+      },
+      {
+        "id": "quit-to-menu-3",
+        "kind": "button",
+        "label": "QUIT TO MENU",
+        "index": 2
+      }
+    ]
+  },
+  {
+    "screenId": "8f1526b34826440786dba427253228fc",
+    "title": "Tetra Game Board",
+    "componentName": "TetraGameBoard",
+    "file": "src/screens/TetraGameBoard.tsx",
+    "buttons": 7,
+    "inputs": 0,
+    "links": 4,
+    "actions": [
+      {
+        "id": "button-1-1",
+        "kind": "button",
+        "label": "Button 1",
+        "index": 0
+      },
+      {
+        "id": "button-2-2",
+        "kind": "button",
+        "label": "Button 2",
+        "index": 1
+      },
+      {
+        "id": "move-3",
+        "kind": "button",
+        "label": "MOVE",
+        "index": 2
+      },
+      {
+        "id": "rotate-4",
+        "kind": "button",
+        "label": "ROTATE",
+        "index": 3
+      },
+      {
+        "id": "soft-5",
+        "kind": "button",
+        "label": "SOFT",
+        "index": 4
+      },
+      {
+        "id": "hard-6",
+        "kind": "button",
+        "label": "HARD",
+        "index": 5
+      },
+      {
+        "id": "hold-7",
+        "kind": "button",
+        "label": "HOLD",
+        "index": 6
+      }
+    ]
+  },
+  {
+    "screenId": "2eeab87257824aacb5400eedeb0f55b8",
+    "title": "Game Settings",
+    "componentName": "GameSettings",
+    "file": "src/screens/GameSettings.tsx",
+    "buttons": 9,
+    "inputs": 8,
+    "links": 4,
+    "actions": [
+      {
+        "id": "button-1-1",
+        "kind": "button",
+        "label": "Button 1",
+        "index": 0
+      },
+      {
+        "id": "button-2-2",
+        "kind": "button",
+        "label": "Button 2",
+        "index": 1
+      },
+      {
+        "id": "back-3",
+        "kind": "button",
+        "label": "Back",
+        "index": 2
+      },
+      {
+        "id": "save-changes-4",
+        "kind": "button",
+        "label": "Save Changes",
+        "index": 3
+      },
+      {
+        "id": "lvl-1-5",
+        "kind": "button",
+        "label": "Lvl 1",
+        "index": 4
+      },
+      {
+        "id": "lvl-5-6",
+        "kind": "button",
+        "label": "Lvl 5",
+        "index": 5
+      },
+      {
+        "id": "lvl-10-7",
+        "kind": "button",
+        "label": "Lvl 10",
+        "index": 6
+      },
+      {
+        "id": "lvl-15-8",
+        "kind": "button",
+        "label": "Lvl 15",
+        "index": 7
+      },
+      {
+        "id": "reset-all-data-9",
+        "kind": "button",
+        "label": "Reset All Data",
+        "index": 8
+      }
+    ]
+  },
+  {
+    "screenId": "e9e36e9ad5704aa7877146e41c4501e3",
+    "title": "Game Over Result",
+    "componentName": "GameOverResult",
+    "file": "src/screens/GameOverResult.tsx",
+    "buttons": 6,
+    "inputs": 0,
+    "links": 0,
+    "actions": [
+      {
+        "id": "play-again-1",
+        "kind": "button",
+        "label": "PLAY AGAIN",
+        "index": 0
+      },
+      {
+        "id": "submit-2",
+        "kind": "button",
+        "label": "SUBMIT",
+        "index": 1
+      },
+      {
+        "id": "menu-3",
+        "kind": "button",
+        "label": "MENU",
+        "index": 2
+      },
+      {
+        "id": "button-4-4",
+        "kind": "button",
+        "label": "Button 4",
+        "index": 3
+      },
+      {
+        "id": "button-5-5",
+        "kind": "button",
+        "label": "Button 5",
+        "index": 4
+      },
+      {
+        "id": "button-6-6",
+        "kind": "button",
+        "label": "Button 6",
+        "index": 5
+      }
+    ]
+  },
+  {
+    "screenId": "b6462cdeb260458889bd2815721cba93",
+    "title": "Controls & Rules",
+    "componentName": "ControlsRules",
+    "file": "src/screens/ControlsRules.tsx",
+    "buttons": 1,
+    "inputs": 0,
+    "links": 0,
+    "actions": [
+      {
+        "id": "back-to-menu-1",
+        "kind": "button",
+        "label": "BACK TO MENU",
+        "index": 0
+      }
+    ]
+  }
+]
